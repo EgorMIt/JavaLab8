@@ -63,17 +63,15 @@ public class AuthController {
         });
 
         Auth.setOnAction(event->{
-            if(LoginAuth.getText().trim().equals("pidor") && PswrdAuth.getText().trim().equals("pidor")){
-                FXMLLoader loader = new FXMLLoader();
+            if(LoginAuth.getText().trim().equals("1") && PswrdAuth.getText().trim().equals("1")){
                 Auth.getScene().getWindow().hide();
+                FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("mainScene.fxml"));
-
                 try {
                     loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 Parent root = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
@@ -83,10 +81,8 @@ public class AuthController {
                 alert.setTitle("Error");
                 alert.setHeaderText("Пошёл нахуЙ");
                 alert.setContentText("По причине долбаёб");
-                alert.showAndWait().ifPresent(rs -> {
-                });
+                alert.showAndWait().ifPresent(rs -> {});
             }
         });
-
     }
 }
