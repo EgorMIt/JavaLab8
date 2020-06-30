@@ -38,10 +38,9 @@ public class AddressController {
 
     @FXML
     void initialize() {
+        ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
-        ObservableList<String> langs= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
-
-        Languages.setItems(langs);
+        Languages.setItems(languages);
         Languages.setValue("Русский");
 
        Input.setOnAction(event->{
@@ -63,8 +62,8 @@ public class AddressController {
            }else{
                Alert alert = new Alert(Alert.AlertType.ERROR);
                alert.setTitle("Error");
-               alert.setHeaderText("Пошёл нахуЙ");
-               alert.setContentText("По причине долбаёб");
+               alert.setHeaderText("Ошибка ввода Адреса/Порта");
+               alert.setContentText("Можно вводить только числа!");
                alert.showAndWait().ifPresent(rs -> {
                });
            }

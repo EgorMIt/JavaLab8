@@ -41,9 +41,9 @@ public class AuthController {
 
     @FXML
     void initialize() {
-        ObservableList<String> langs= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
+        ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
-        Languages.setItems(langs);
+        Languages.setItems(languages);
         Languages.setValue("Русский");
 
         Register.setOnAction(event->{
