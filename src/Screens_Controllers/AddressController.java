@@ -39,7 +39,7 @@ public class AddressController {
     @FXML
     void initialize() {
 
-        ObservableList<String> langs= FXCollections.observableArrayList("Русский", "Белорусский", "Венгерский", "Испанский");
+        ObservableList<String> langs= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
         Languages.setItems(langs);
         Languages.setValue("Русский");
