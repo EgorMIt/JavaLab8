@@ -1,10 +1,10 @@
-package Screens_Controllers;
+package ClientFullPack.Screens_Controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import connection.Network;
+import ClientFullPack.RunClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,10 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class AddressController {
 
@@ -41,9 +37,6 @@ public class AddressController {
     @FXML
     private Button Input;
 
-    private static int port;
-    private static String ip_adress;
-
     @FXML
     void initialize() {
         ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
@@ -56,8 +49,14 @@ public class AddressController {
             String portConnect = Port.getText().trim();
             if(addressConnect.length() == addressConnect.replaceAll("[^0-9.]","").length() || addressConnect.toLowerCase().equals("localhost")) {//здесь должна быть провекра на правильность формата ввода
                 if (portConnect.length() == portConnect.replaceAll("[^0-9]", "").length()) {
-                    try {
-                        Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
+                    //try {
+                        if(!addressConnect.equals("localhost"))
+                            addressConnect = addressConnect.replaceAll("[^0-9.]","");
+                        //Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
+
+                        RunClient.ip_adress = addressConnect;
+                        RunClient.port = Integer.parseInt(portConnect);
+
                         Input.getScene().getWindow().hide();
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("authScene.fxml")); //загрузка экрана входа
@@ -72,14 +71,14 @@ public class AddressController {
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
-                    } catch (IOException e) {
+                   /* } catch (IOException e) {
                         Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                         alert.setTitle("Error");
                         alert.setHeaderText("Ошибка подключения");
                         alert.setContentText("Ошибка подключения!!!\nМожно пойти перекурить)");
                         alert.showAndWait().ifPresent(rs -> {
                         });
-                    }
+                    }*/
                 }else {
                     Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                     alert.setTitle("Error");
@@ -97,11 +96,5 @@ public class AddressController {
                 });
             }
        });
-    }
-    public static int getPort(){
-        return port;
-    }
-    public static String getIpadress(){
-        return ip_adress;
     }
 }

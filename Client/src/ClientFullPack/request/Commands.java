@@ -1,4 +1,4 @@
-package request;
+package ClientFullPack.request;
 
 public enum Commands {
 

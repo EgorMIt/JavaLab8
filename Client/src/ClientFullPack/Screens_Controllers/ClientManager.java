@@ -1,10 +1,10 @@
-package Screens_Controllers;
+package ClientFullPack.Screens_Controllers;
 
-import Screens_Controllers.AddressController;
-import connection.Network;
+import ClientFullPack.RunClient;
+import ClientFullPack.connection.Network;
 import exceptions.ArgumentException;
 import io.Message;
-import request.UserResponse;
+import ClientFullPack.request.UserResponse;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -13,18 +13,11 @@ import java.util.NoSuchElementException;
 
 public class ClientManager {
 
-    private static String address;
-    private static Integer port;
-
     private static final String REGISTRATION_IS_SUCCESS = "110100011000000011010000101101011101000010110011";
     private static final String AUTHORIZATION_IS_SUCCESS = "110100001011000011010000101100101101000110000010";
 
     public void begin(){
         try {
-
-            port = AddressController.getPort();
-            address = AddressController.getIpadress();
-
             UserResponse userResponseValidator = new UserResponse();
             Network network;
 
@@ -38,7 +31,7 @@ public class ClientManager {
                         // если валидатор имеет команду.. а он обязан иметь её в любом случае..
                         // а именно .getCommandName() вернет 'Авторизация'
                         //network = new Network();
-                        network = new Network(address, port);
+                        network = new Network(RunClient.ip_adress, RunClient.port);
                         network.write(message);
                         System.out.println("Соединение установлено!");
                         String responce = (String) network.read();

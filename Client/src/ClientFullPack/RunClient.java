@@ -1,3 +1,5 @@
+package ClientFullPack;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +10,12 @@ import java.io.IOException;
 
 
 public class RunClient extends Application {
+
+    public static String ip_adress;
+    public static int port;
+    public static String login;
+    public static String pass;
+    public static String owner;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

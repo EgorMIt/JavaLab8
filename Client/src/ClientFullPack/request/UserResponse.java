@@ -1,4 +1,4 @@
-package request;
+package ClientFullPack.request;
 
 import app.collection.building.CityBuilder;
 import exceptions.ArgumentException;
