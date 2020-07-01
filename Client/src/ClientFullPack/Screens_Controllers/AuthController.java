@@ -72,17 +72,17 @@ public class AuthController {
                     RunClient.pass = pass;
                     if (RunClient.login.equals("1") && RunClient.pass.equals("1")) { //здесь должна быть проверка логина/пароля
                         Auth.getScene().getWindow().hide();
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource("mainScene.fxml")); //загрузка главного экрана
+                        Stage stage = new Stage();
+                        Parent root = null;
                         try {
-                            loader.load();
+                            root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
+                            Scene scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.setTitle("Login");
+                            stage.show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        Parent root = loader.getRoot();
-                        Stage stage = new Stage();
-                        stage.setScene(new Scene(root));
-                        stage.showAndWait();
                     } else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error");
