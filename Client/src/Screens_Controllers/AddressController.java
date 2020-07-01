@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import connection.Network;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -51,34 +52,50 @@ public class AddressController {
         Languages.setValue("Русский");
 
         Input.setOnAction(event->{
-            port = Integer.parseInt(Port.getText());
-            ip_adress = IP_adress.getText().toString();
+            String addressConnect = IP_adress.getText().trim();
+            String portConnect = Port.getText().trim();
+            if(addressConnect.length() == addressConnect.replaceAll("[^0-9.]","").length() || addressConnect.toLowerCase().equals("localhost")) {//здесь должна быть провекра на правильность формата ввода
+                if (portConnect.length() == portConnect.replaceAll("[^0-9]", "").length()) {
+                    try {
+                        Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
+                        Input.getScene().getWindow().hide();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource("authScene.fxml")); //загрузка экрана входа
 
-            ClientManager clientManager = new ClientManager();
-            clientManager.begin();
-           if(port > 1023 && port < 65535 && !Port.getText().isEmpty()){ //здесь должна быть провекра на правильность формата ввода
-               Input.getScene().getWindow().hide();
-               FXMLLoader loader = new FXMLLoader();
-               loader.setLocation(getClass().getResource("authScene.fxml")); //загрузка экрана входа
+                        try {
+                            loader.load();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-               try {
-                   loader.load();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
-
-               Parent root = loader.getRoot();
-               Stage stage = new Stage();
-               stage.setScene(new Scene(root));
-               stage.showAndWait();
-           }else{
-               Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
-               alert.setTitle("Error");
-               alert.setHeaderText("Ошибка ввода Адреса/Порта");
-               alert.setContentText("Проверьте правильность ввода!");
-               alert.showAndWait().ifPresent(rs -> {
-               });
-           }
+                        Parent root = loader.getRoot();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.showAndWait();
+                    } catch (IOException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Ошибка подключения");
+                        alert.setContentText("Ошибка подключения!!!\nМожно пойти перекурить)");
+                        alert.showAndWait().ifPresent(rs -> {
+                        });
+                    }
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ошибка ввода Адреса/Порта");
+                    alert.setContentText("Проверьте правильность ввода!");
+                    alert.showAndWait().ifPresent(rs -> {
+                    });
+                }
+            }else {
+                Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                alert.setTitle("Error");
+                alert.setHeaderText("Ошибка ввода Адреса/Порта");
+                alert.setContentText("Проверьте правильность ввода!");
+                alert.showAndWait().ifPresent(rs -> {
+                });
+            }
        });
     }
     public static int getPort(){
