@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="602.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Screens_Controllers.AddressController">
+   <children>
+      <ComboBox fx:id="Languages" layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Language" />
+      <TextField fx:id="IP_adress" layoutX="227.0" layoutY="175.0" />
+      <TextField fx:id="Port" layoutX="227.0" layoutY="244.0" />
+      <Text layoutX="227.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP адресс" wrappingWidth="113.201171875" />
+      <Text layoutX="227.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Порт" />
+      <Text layoutX="164.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Добро пожаловать в CityBuilder">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="Input" layoutX="275.0" layoutY="310.0" mnemonicParsing="false" text="Войти" />
+   </children>
+</AnchorPane>
