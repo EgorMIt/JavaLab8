@@ -32,7 +32,7 @@ public class Network {
 
 //        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
 //        oos.writeObject(obj);
-//        System.out.println("Otpr");
+//        System.out.println("Otpr")
 //        oos.flush();
     }
     public Object read() throws IOException, ClassNotFoundException {
