@@ -8,8 +8,7 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="581.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Screens_Controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Screens_Controllers.MainController">
    <children>
       <Accordion layoutX="48.0" layoutY="83.0" />
       <Accordion layoutX="-188.0" layoutY="-178.0">
@@ -17,10 +16,22 @@
           <TitledPane animated="false" text="untitled 1" />
         </panes>
       </Accordion>
-      <TableView layoutX="133.0" layoutY="182.0" prefHeight="385.0" prefWidth="689.0">
+      <TableView layoutX="41.0" layoutY="176.0" prefHeight="385.0" prefWidth="1112.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="id_city" prefWidth="44.0" text="ID" />
+            <TableColumn fx:id="n_city" prefWidth="79.0" text="Название" />
+            <TableColumn fx:id="owner_city" prefWidth="73.0" text="Владелец" />
+            <TableColumn prefWidth="49.0" text="X" fx:id="x_city" />
+            <TableColumn fx:id="y_city" prefWidth="54.0" text="Y" />
+            <TableColumn fx:id="creation_city" prefWidth="133.0" text="Дата создания" />
+            <TableColumn fx:id="area_city" prefWidth="59.0" text="Площадь" />
+            <TableColumn fx:id="population_city" prefWidth="118.0" text="Население" />
+            <TableColumn fx:id="meters_city" prefWidth="91.0" text="Уровень моря" />
+            <TableColumn fx:id="climate_city" prefWidth="99.0" text="Клмат" />
+            <TableColumn fx:id="government_city" prefWidth="99.0" text="Тип правления" />
+            <TableColumn fx:id="standart_city" prefWidth="99.0" text="Уровень жизни" />
+            <TableColumn fx:id="birthday_city" prefWidth="58.0" text="Д. р правителя" />
+            <TableColumn fx:id="age_city" prefWidth="55.0" text="Возраст" />
         </columns>
       </TableView>
       <ComboBox fx:id="Languages" layoutX="14.0" layoutY="14.0" prefWidth="150.0" promptText="Language" />

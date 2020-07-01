@@ -48,7 +48,7 @@ public class AuthController {
 
         Register.setOnAction(event->{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("registerScene.fxml"));
+            loader.setLocation(getClass().getResource("registerScene.fxml")); //загрузка экрана регистрации
 
             try {
                 loader.load();
@@ -63,10 +63,10 @@ public class AuthController {
         });
 
         Auth.setOnAction(event->{
-            if(LoginAuth.getText().trim().equals("1") && PswrdAuth.getText().trim().equals("1")){
+            if(LoginAuth.getText().trim().equals("1") && PswrdAuth.getText().trim().equals("1")){ //здесь должна быть проверка логина/пароля
                 Auth.getScene().getWindow().hide();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("mainScene.fxml"));
+                loader.setLocation(getClass().getResource("mainScene.fxml")); //загрузка главного экрана
                 try {
                     loader.load();
                 } catch (IOException e) {
@@ -79,8 +79,8 @@ public class AuthController {
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Пошёл нахуЙ");
-                alert.setContentText("По причине долбаёб");
+                alert.setHeaderText("Ошибка ввода Логина/Пароля");
+                alert.setContentText("Проверьте введенные данные!");
                 alert.showAndWait().ifPresent(rs -> {});
             }
         });

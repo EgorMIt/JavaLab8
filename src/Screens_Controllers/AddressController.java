@@ -44,10 +44,10 @@ public class AddressController {
         Languages.setValue("Русский");
 
        Input.setOnAction(event->{
-           if(IP_adress.getText().trim().equals("1") && Port.getText().trim().equals("1")){
+           if(IP_adress.getText().trim().equals("1") && Port.getText().trim().equals("1")){ //здесь должна быть провекра на правильность формата ввода
                Input.getScene().getWindow().hide();
                FXMLLoader loader = new FXMLLoader();
-               loader.setLocation(getClass().getResource("authScene.fxml"));
+               loader.setLocation(getClass().getResource("authScene.fxml")); //загрузка экрана входа
 
                try {
                    loader.load();
@@ -60,7 +60,7 @@ public class AddressController {
                stage.setScene(new Scene(root));
                stage.showAndWait();
            }else{
-               Alert alert = new Alert(Alert.AlertType.ERROR);
+               Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                alert.setTitle("Error");
                alert.setHeaderText("Ошибка ввода Адреса/Порта");
                alert.setContentText("Можно вводить только числа!");
