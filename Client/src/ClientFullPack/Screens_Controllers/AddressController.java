@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import ClientFullPack.RunClient;
+import ClientFullPack.connection.Network;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,10 +50,10 @@ public class AddressController {
             String portConnect = Port.getText().trim();
             if(addressConnect.length() == addressConnect.replaceAll("[^0-9.]","").length() || addressConnect.toLowerCase().equals("localhost")) {//здесь должна быть провекра на правильность формата ввода
                 if (portConnect.length() == portConnect.replaceAll("[^0-9]", "").length()) {
-                    //try {
+                    try {
                         if(!addressConnect.equals("localhost"))
                             addressConnect = addressConnect.replaceAll("[^0-9.]","");
-                        //Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
+                        Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
                         //установка соединения
                         RunClient.ip_adress = addressConnect;
                         RunClient.port = Integer.parseInt(portConnect);
@@ -71,14 +72,14 @@ public class AddressController {
                         Stage stage = new Stage();
                         stage.setScene(new Scene(root));
                         stage.showAndWait();
-                   /* } catch (IOException e) {
+                    } catch (IOException e) {
                         Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                         alert.setTitle("Error");
                         alert.setHeaderText("Ошибка подключения");
                         alert.setContentText("Ошибка подключения!!!\nМожно пойти перекурить)");
                         alert.showAndWait().ifPresent(rs -> {
                         });
-                    }*/
+                    }
                 }else {
                     Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                     alert.setTitle("Error");

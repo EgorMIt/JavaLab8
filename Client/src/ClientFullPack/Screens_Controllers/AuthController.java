@@ -1,6 +1,9 @@
 package ClientFullPack.Screens_Controllers;
 
 import ClientFullPack.RunClient;
+import ClientFullPack.connection.Network;
+import io.Message;
+import io.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -70,29 +73,54 @@ public class AuthController {
                 if (pass.length() == pass.replaceAll("[^A-Za-z0-9]", "").length()) {
                     RunClient.login = login;
                     RunClient.pass = pass;
-                    if (RunClient.login.equals("1") && RunClient.pass.equals("1")) {
-                        //здесь должна быть проверка логина/пароля из базы данных
-                        Auth.getScene().getWindow().hide();
-                        Stage stage = new Stage();
-                        Parent root = null;
-                        try {
-                            root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
-                            Scene scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.setTitle("Login");
-                            stage.show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    try {
+                        Network network = new Network(RunClient.ip_adress, RunClient.port);
+
+                        User user = new User(login,pass);
+
+                        Message message = new Message("AUTHORIZATION",user,false);
+
+                        network.write(message);
+
+                        if(network.read().toString().equals(RunClient.AUTHORIZATION_ISSUCCESS)){
+                            Auth.getScene().getWindow().hide();
+                            Stage stage = new Stage();
+                            Parent root = null;
+                            try {
+                                root = FXMLLoader.load(getClass().getResource("mainScene.fxml"));
+                                Scene scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.setTitle("Login");
+                                stage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            LoginAuth.setText("");
+                            PswrdAuth.setText("");
+                            Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                            alert.setTitle("Error");
+                            alert.setHeaderText("Ошибка входа");
+                            alert.setContentText("Логин или пароль неверны");
+                            alert.showAndWait().ifPresent(rs -> {
+                            });
                         }
-                    } else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
+
+
+
+                    }catch (IOException | ClassNotFoundException e) {
+                        LoginAuth.setText("");
+                        PswrdAuth.setText("");
+                        Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                         alert.setTitle("Error");
-                        alert.setHeaderText("Ошибка ввода Логина/Пароля");
-                        alert.setContentText("Проверьте введенные данные!");
+                        alert.setHeaderText("Ошибка подключения");
+                        alert.setContentText("Ошибка подключения!!!\nМожно пойти перекурить)");
                         alert.showAndWait().ifPresent(rs -> {
                         });
                     }
                 }else{
+                    LoginAuth.setText("");
+                    PswrdAuth.setText("");
                     Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                     alert.setTitle("Error");
                     alert.setHeaderText("Ошибка ввода Адреса/Порта");
@@ -101,6 +129,8 @@ public class AuthController {
                     });
                 }
             }else{
+                LoginAuth.setText("");
+                PswrdAuth.setText("");
                 Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                 alert.setTitle("Error");
                 alert.setHeaderText("Ошибка ввода Адреса/Порта");
