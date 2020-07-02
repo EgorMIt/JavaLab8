@@ -1,12 +1,20 @@
 package ClientFullPack.Screens_Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
 public class App_main_Controller {
 
@@ -17,7 +25,7 @@ public class App_main_Controller {
     private URL location;
 
     @FXML
-    private ComboBox<?> Languages;
+    private ComboBox<String> Languages;
 
     @FXML
     private TableView<?> objectTable;
@@ -93,7 +101,24 @@ public class App_main_Controller {
 
     @FXML
     void initialize() {
+        ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
+        Languages.setItems(languages);
+        Languages.setValue("Русский");
+
+        Add_button.setOnAction(event->{
+            Stage stage = new Stage();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("addScene.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Login");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 }
