@@ -7,18 +7,18 @@ import java.io.Serializable;
 public enum Climate implements Comparable<Climate> , Serializable {
 
 
-    TROPICAL_SAVANNA("Тропическая саванна",   1),
-    MEDITERRANEAN(      "Средиземноморье",      2),
-    POLAR_ICECAP(       "Полярный ледник ",     3);
+    TROPICAL_SAVANNA("Тропическая саванна"),
+    MEDITERRANEAN(      "Средиземноморье"),
+    POLAR_ICECAP(       "Полярный ледник");
 
-    private String      russianName;
-    final private int   number;
+    private final String     russianName;
+    private int number = 0;
     private Climate     o;
 
-    Climate(String russianName, int number) {
+    Climate(String russianName) {
         this.russianName =  russianName;
-        this.number =       number;
     }
+
 
     @Override
     public String toString() {

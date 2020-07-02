@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 
 
-public class CityBuilder implements ICityBuilder<City>, MessageErrors {
+public class CityBuilder implements MessageErrors {
 
     private String name = "Default";
     private Coordinates coordinates;
@@ -27,6 +27,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     private GovernorBuilder governorBuilder;
     private CityCoordinateBuilder cityCoordinateBuilder;
     private ConsoleReader input;
+    public String Error_mass= "";
 
     public CityBuilder() throws IOException {
         input = new ConsoleReader();
@@ -48,26 +49,18 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает название города
      */
-    @Override
-    public void setName() {
-
-        System.out.println("Введите название города, значение типа 'String' [не менее 3-х букв и не более 20-ти]" + System.lineSeparator());
-
-        input.getDefaultConsoleSymbol();
-        String line = input.getScanner().nextLine().trim();
+    public void setName(String name_city) {
         try {
-            if (line.length() > 3 && line.length() < 20) name = (line).trim();
+            if (name_city.length() > 3 && name_city.length() < 20) name = (name_city).trim();
             else {
-                System.out.println(messageOfInputValueError);
-                setName();
+                Error_mass += messageOfInputFormatError;
             }
         } catch (Exception e) {
-            System.out.println(messageOfInputFormatError);
-            setName();
+            Error_mass += messageOfInputFormatError;
         }
     }
 
-    @Override
+
     public void setCoordinates() {
         coordinates = cityCoordinateBuilder.create();
     }
@@ -75,7 +68,6 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает площадь
      */
-    @Override
     public void setArea() {
         System.out.println(System.lineSeparator() + "Введите площадь города, целочисленное значение " + "(не превосходит " + Integer.MAX_VALUE + ")" + System.lineSeparator());
         input.getDefaultConsoleSymbol();
@@ -95,7 +87,6 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает численность населения
      */
-    @Override
     public void setPopulation() {
         System.out.println(System.lineSeparator() + "Введите численность начеления города, целочисленное значение < " + Integer.MAX_VALUE + System.lineSeparator());
         input.getDefaultConsoleSymbol();
@@ -117,7 +108,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает высоту над уровнем моря
      */
-    @Override
+
     public void setMetersAboveSeaLevel() {
         System.out.println(System.lineSeparator() + "Введите значение высоты над уровнем моря, целочисленное значение " + " (не превосходит " + Integer.MAX_VALUE + ")");
         input.getDefaultConsoleSymbol();
@@ -138,7 +129,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает климат
      */
-    @Override
+
     public void setClimate() {
         System.out.println(System.lineSeparator() + "Выберите тип климата из перечисленного списка:" + System.lineSeparator());
         Climate.printAllClimateTypes();
@@ -175,7 +166,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает правительственный строй
      */
-    @Override
+
     public void setGovernment() {
         System.out.println(System.lineSeparator() + "Выберите тип правительственного строя из перечисленного списка:");
         Government.printAllGovernent();
@@ -211,7 +202,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
     /**
      * Метод задает уровень жизни
      */
-    @Override
+
     public void setStandartOfLiving() {
         System.out.println(System.lineSeparator() + "Выберите уровень жизни в городе из перечисленного списка:");
         StandardOfLiving.printAllStrndartOfLiving();
@@ -239,7 +230,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
 
     }
 
-    @Override
+
     public void setGovernor() {
         this.governor = governorBuilder.create();
     }
@@ -250,10 +241,10 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
      * @return новый объект класса City
      * @see City
      */
-    @Override
+
     public City create() {
         System.out.println(System.lineSeparator() + "Начнем инициализацию города!");
-        setName();
+        setName("");
         setCoordinates();
         setArea();
         setPopulation();
@@ -265,7 +256,7 @@ public class CityBuilder implements ICityBuilder<City>, MessageErrors {
         return new City(name, coordinates, area, population, metersAboveSeaLevel, climate, government, standardOfLiving, governor);
     }
 
-    @Override
+
     public City getResult() {
         return new City(name, coordinates, area, population, metersAboveSeaLevel, climate, government, standardOfLiving, governor);
     }

@@ -48,8 +48,8 @@ public class AddressController {
         Input.setOnAction(event->{
             String addressConnect = IP_adress.getText().trim();
             String portConnect = Port.getText().trim();
-            if(addressConnect.length() == addressConnect.replaceAll("[^0-9.]","").length() || addressConnect.toLowerCase().equals("localhost")) {//здесь должна быть провекра на правильность формата ввода
-                if (portConnect.length() == portConnect.replaceAll("[^0-9]", "").length()) {
+            if(!addressConnect.isEmpty() && addressConnect.length() == addressConnect.replaceAll("[^0-9.]","").length() || addressConnect.toLowerCase().equals("localhost")) {//здесь должна быть провекра на правильность формата ввода
+                if (!portConnect.isEmpty() && portConnect.length() == portConnect.replaceAll("[^0-9]", "").length()) {
                     try {
                         if(!addressConnect.equals("localhost"))
                             addressConnect = addressConnect.replaceAll("[^0-9.]","");

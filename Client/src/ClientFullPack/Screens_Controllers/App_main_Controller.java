@@ -107,17 +107,19 @@ public class App_main_Controller {
         Languages.setValue("Русский");
 
         Add_button.setOnAction(event->{
-            Stage stage = new Stage();
-            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("addScene.fxml")); //загрузка экрана регистрации
+
             try {
-                root = FXMLLoader.load(getClass().getResource("addScene.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setTitle("Login");
-                stage.show();
+                loader.load();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
         });
 
     }

@@ -69,10 +69,8 @@ public class AuthController {
         Auth.setOnAction(event->{
             String login = LoginAuth.getText().trim();
             String pass = PswrdAuth.getText().trim();
-            if(login.length() == login.replaceAll("[^A-Za-z0-9]", "").length()) {
-                if (pass.length() == pass.replaceAll("[^A-Za-z0-9]", "").length()) {
-                    RunClient.login = login;
-                    RunClient.pass = pass;
+            if(!login.isEmpty() && login.length() == login.replaceAll("[^A-Za-z0-9]", "").length()) {
+                if (!pass.isEmpty() && pass.length() == pass.replaceAll("[^A-Za-z0-9]", "").length()) {
                     try {
                         Network network = new Network(RunClient.ip_adress, RunClient.port);
 
@@ -83,6 +81,8 @@ public class AuthController {
                         network.write(message);
 
                         if(network.read().toString().equals(RunClient.AUTHORIZATION_ISSUCCESS)){
+                            RunClient.login = login;
+                            RunClient.pass = pass;
                             Auth.getScene().getWindow().hide();
                             Stage stage = new Stage();
                             Parent root = null;
