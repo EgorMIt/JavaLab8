@@ -53,7 +53,7 @@ public class AddressController {
                         if(!addressConnect.equals("localhost"))
                             addressConnect = addressConnect.replaceAll("[^0-9.]","");
                         //Network network = new Network(addressConnect.toLowerCase(),Integer.parseInt(portConnect));
-
+                        //установка соединения
                         RunClient.ip_adress = addressConnect;
                         RunClient.port = Integer.parseInt(portConnect);
 
@@ -83,7 +83,7 @@ public class AddressController {
                     Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                     alert.setTitle("Error");
                     alert.setHeaderText("Ошибка ввода Адреса/Порта");
-                    alert.setContentText("Проверьте правильность ввода!");
+                    alert.setContentText("Проверьте правильность ввода порта!");
                     alert.showAndWait().ifPresent(rs -> {
                     });
                 }
@@ -91,7 +91,7 @@ public class AddressController {
                 Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                 alert.setTitle("Error");
                 alert.setHeaderText("Ошибка ввода Адреса/Порта");
-                alert.setContentText("Проверьте правильность ввода!");
+                alert.setContentText("Проверьте правильность ввода адреса!");
                 alert.showAndWait().ifPresent(rs -> {
                 });
             }

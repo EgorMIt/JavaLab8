@@ -48,11 +48,12 @@ public class RegController {
             if(login.length() == login.replaceAll("[^A-Za-z0-9]", "").length()){
                 if(pass.length() == pass.replaceAll("[^A-Za-z0-9]", "").length()){
                     Reg.getScene().getWindow().hide();
+                    //здесь должна быть отправлка данных нового пользователя в БД
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                     alert.setTitle("Error");
                     alert.setHeaderText("Ошибка ввода Адреса/Порта");
-                    alert.setContentText("Проверьте правильность ввода!");
+                    alert.setContentText("Проверьте правильность ввода пароля!");
                     alert.showAndWait().ifPresent(rs -> {
                     });
                 }
@@ -60,7 +61,7 @@ public class RegController {
                 Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
                 alert.setTitle("Error");
                 alert.setHeaderText("Ошибка ввода Адреса/Порта");
-                alert.setContentText("Проверьте правильность ввода!");
+                alert.setContentText("Проверьте правильность ввода логина!");
                 alert.showAndWait().ifPresent(rs -> {
                 });
             }

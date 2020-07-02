@@ -70,7 +70,8 @@ public class AuthController {
                 if (pass.length() == pass.replaceAll("[^A-Za-z0-9]", "").length()) {
                     RunClient.login = login;
                     RunClient.pass = pass;
-                    if (RunClient.login.equals("1") && RunClient.pass.equals("1")) { //здесь должна быть проверка логина/пароля
+                    if (RunClient.login.equals("1") && RunClient.pass.equals("1")) {
+                        //здесь должна быть проверка логина/пароля из базы данных
                         Auth.getScene().getWindow().hide();
                         Stage stage = new Stage();
                         Parent root = null;
@@ -91,7 +92,21 @@ public class AuthController {
                         alert.showAndWait().ifPresent(rs -> {
                         });
                     }
+                }else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Ошибка ввода Адреса/Порта");
+                    alert.setContentText("Проверьте правильность ввода пароля!");
+                    alert.showAndWait().ifPresent(rs -> {
+                    });
                 }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR); //если проверка не прошла
+                alert.setTitle("Error");
+                alert.setHeaderText("Ошибка ввода Адреса/Порта");
+                alert.setContentText("Проверьте правильность ввода логина!");
+                alert.showAndWait().ifPresent(rs -> {
+                });
             }
         });
     }
