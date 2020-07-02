@@ -25,7 +25,7 @@ public class ClientManager {
                 try {
 
                     Message message = userResponseValidator.validate();
-                    // объекту класса Message были присвоены признаки new Message(..), которые возвращается метод validate()
+                    // объекту класса Message были присвоены признаки new пMessage(..), которые возвращается метод validate()
 
                     if (userResponseValidator.getCommandName() != null) {
                         // если валидатор имеет команду.. а он обязан иметь её в любом случае..
