@@ -2,9 +2,6 @@ package ClientFullPack.Screens_Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,7 +17,7 @@ public class App_main_Controller {
     private URL location;
 
     @FXML
-    private ComboBox<String> Languages;
+    private ComboBox<?> Languages;
 
     @FXML
     private TableView<?> objectTable;
@@ -77,11 +74,26 @@ public class App_main_Controller {
     private Button Clear_button;
 
     @FXML
-    void initialize() {
-        ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
+    private Button Remove;
 
-        Languages.setItems(languages);
-        Languages.setValue("Русский");
+    @FXML
+    private Button Remove_if_greater;
+
+    @FXML
+    private Button Remove_if_lower;
+
+    @FXML
+    private Button Update_id;
+
+    @FXML
+    private Button Avarage_meters;
+
+    @FXML
+    private Button Replace;
+
+    @FXML
+    void initialize() {
+
 
     }
 }
