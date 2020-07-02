@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
    <children>
       <ComboBox fx:id="Languages" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
       <TableView fx:id="objectTable" layoutX="16.0" layoutY="126.0" prefHeight="464.0" prefWidth="1063.0">
