@@ -118,21 +118,11 @@ public class RepositoryOfCity {
      */
 
     public void show() {
-        char codeDow = 2039;
-        StringBuilder sb = new StringBuilder();
-        if (getCitiesCollection().isEmpty()) {
-            SendToClient.write("Коллекция пустая!");
-        } else {
-            for (Map.Entry<Integer, City> pair : getCitiesCollection().entrySet()) {
-                Integer k = pair.getKey();
-                City v = pair.getValue();
-                sb.append("|").append(codeDow).append("|").append(System.lineSeparator()).append(v.toString());
 
-            }
-
+        for (Map.Entry<Integer, City> pair : getCitiesCollection().entrySet()) {
+            City v = pair.getValue();
+            SendToClient.write(v);
         }
-        SendToClient.write(sb.toString());
-
     }
 
     public void removeGreater(City city) {
@@ -256,7 +246,7 @@ public class RepositoryOfCity {
                 if (dataBase.updateId(id, city, dataBase.getOwner())) {
                     getCitiesCollection().put(id, city);
                     SendToClient.write("Поле успешно обновлено!");
-                }else{
+                } else {
                     SendToClient.write("Не удалось обновить объект в базе данных.. ");
                 }
 
