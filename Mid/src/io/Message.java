@@ -4,6 +4,7 @@ import app.collection.City;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Класс, объект которого клиент отправляет серверу

@@ -80,9 +80,9 @@ public class AuthController {
                         Message message = new Message("AUTHORIZATION",user,false);
 
                         network.write(message);
-                        ArrayList arrayList  = (ArrayList) network.read();
+                        String outServer = network.read().toString();
 
-                        if(arrayList.contains(RunClient.AUTHORIZATION_ISSUCCESS)){
+                        if(outServer.equals(RunClient.AUTHORIZATION_ISSUCCESS)){
                             RunClient.login = login;
                             RunClient.pass = pass;
                             Auth.getScene().getWindow().hide();
