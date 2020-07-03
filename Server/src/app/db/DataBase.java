@@ -11,9 +11,9 @@ import java.util.TreeMap;
 
 public class DataBase {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres"; // тут будет наш локальный постгресс
-    private static final String LOGIN = "postgres";
-    private static final String PASS = "12345";
+    private static final String URL = "jdbc:postgresql://localhost:5432/antondzubak"; // тут будет наш локальный постгресс
+    private static final String LOGIN = "antondzubak";
+    private static final String PASS = "Fyyf2001#";
     private Connection connection;
     private Statement statement;
 

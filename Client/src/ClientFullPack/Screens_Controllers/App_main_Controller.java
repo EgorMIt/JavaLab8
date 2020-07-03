@@ -104,11 +104,10 @@ public class App_main_Controller {
         ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
         Languages.setItems(languages);
-        Languages.setValue("Русский");
 
         Add_button.setOnAction(event->{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("addScene.fxml")); //загрузка экрана регистрации
+            loader.setLocation(getClass().getResource("addScene.fxml"));
 
             try {
                 loader.load();
