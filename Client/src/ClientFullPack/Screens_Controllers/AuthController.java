@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AuthController {
@@ -79,8 +80,9 @@ public class AuthController {
                         Message message = new Message("AUTHORIZATION",user,false);
 
                         network.write(message);
+                        ArrayList arrayList  = (ArrayList) network.read();
 
-                        if(network.read().toString().equals(RunClient.AUTHORIZATION_ISSUCCESS)){
+                        if(arrayList.contains(RunClient.AUTHORIZATION_ISSUCCESS)){
                             RunClient.login = login;
                             RunClient.pass = pass;
                             Auth.getScene().getWindow().hide();

@@ -7,9 +7,11 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 
 public class SendToClient implements Runnable {
 
+    private static ArrayList<Object> arrayList = new ArrayList<>();
 
     private SocketChannel channel;
 
@@ -19,8 +21,12 @@ public class SendToClient implements Runnable {
 
     private static String messageToServer = "";
 
-    public static void write(String s) {
+    /*public static void write(String s) {
         messageToServer += s;
+    }*/
+
+    public static void write(Object object){
+        arrayList.add(object);
     }
 
 
@@ -37,7 +43,8 @@ public class SendToClient implements Runnable {
             selector.select();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(baos);
-            oos.writeObject(messageToServer);
+            System.out.println(arrayList.size() + " " + arrayList.isEmpty());
+            oos.writeObject(arrayList);
             byte[] outcoming = baos.toByteArray();
             ByteBuffer bb = ByteBuffer.wrap(outcoming);
             int m = 0;
@@ -52,7 +59,7 @@ public class SendToClient implements Runnable {
                     e.printStackTrace();
                 }
             }*/
-            messageToServer = "";
+            arrayList.clear();
 
         } catch (IOException e) {
             System.out.println("Произошла ошибка отправки сообщения клиенту. Возможно, он отключился");
