@@ -58,7 +58,9 @@ public class RegController {
 
                         network.write(message);
 
-                        if(network.read().toString().equals(RunClient.REGISTRATION_ISSUCESS)){
+                        String outServer = network.read().toString();
+
+                        if(outServer.equals(RunClient.REGISTRATION_ISSUCESS)){
                             Alert alert = new Alert(Alert.AlertType.INFORMATION); //если проверка не прошла
                             alert.setTitle("Успех");
                             alert.setHeaderText("Успешная регистрация");

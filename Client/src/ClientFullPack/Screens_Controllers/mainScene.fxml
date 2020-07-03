@@ -6,26 +6,25 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
    <children>
       <ComboBox fx:id="Languages" layoutX="35.0" layoutY="28.0" prefWidth="150.0" promptText="Язык" />
-      <TableView fx:id="objectTable" layoutX="16.0" layoutY="126.0" prefHeight="411.0" prefWidth="1063.0">
+      <TableView fx:id="objectTable" layoutX="36.0" layoutY="131.0" prefHeight="543.0" prefWidth="1288.0">
         <columns>
           <TableColumn fx:id="ID" prefWidth="37.0" text="ID" />
-          <TableColumn fx:id="Owner" prefWidth="59.0" text="Владелец" />
-            <TableColumn fx:id="Name" prefWidth="64.0" text="Название" />
-            <TableColumn fx:id="X" prefWidth="47.0" text="X" />
-            <TableColumn fx:id="Y" prefWidth="50.0" text="Y" />
-            <TableColumn fx:id="CreationDate" prefWidth="112.0" text="Дата" />
-            <TableColumn fx:id="Area" prefWidth="79.0" text="Площадь" />
-            <TableColumn fx:id="Population" text="Население" />
-            <TableColumn fx:id="MetersAboveSeaLevel" prefWidth="93.0" text="Уровнь над морем" />
-            <TableColumn fx:id="Climate" prefWidth="71.0" text="Климат" />
-            <TableColumn fx:id="Government" prefWidth="65.0" text="Правление" />
-            <TableColumn fx:id="StandartOfLiving" prefWidth="65.0" text="Уровень жизни" />
-            <TableColumn fx:id="Governor" prefWidth="65.0" text="Губернатор" />
+          <TableColumn fx:id="Owner" prefWidth="92.0" text="Владелец" />
+            <TableColumn fx:id="Name" prefWidth="97.0" text="Название" />
+            <TableColumn fx:id="X" minWidth="0.0" prefWidth="59.0" text="X" />
+            <TableColumn fx:id="Y" prefWidth="25.0" text="Y" />
+            <TableColumn fx:id="CreationDate" prefWidth="99.0" text="Дата" />
+            <TableColumn fx:id="Area" prefWidth="92.0" text="Площадь" />
+            <TableColumn fx:id="Population" prefWidth="95.0" text="Население" />
+            <TableColumn fx:id="MetersAboveSeaLevel" prefWidth="151.0" text="Уровнь над морем" />
+            <TableColumn fx:id="Climate" prefWidth="109.0" text="Климат" />
+            <TableColumn fx:id="Government" prefWidth="108.0" text="Правление" />
+            <TableColumn fx:id="StandartOfLiving" prefWidth="123.0" text="Уровень жизни" />
             <TableColumn fx:id="Age" prefWidth="65.0" text="Возраст" />
-            <TableColumn fx:id="Birthday" prefWidth="110.0" text="День Рождения" />
+            <TableColumn fx:id="Birthday" prefWidth="160.0" text="День Рождения" />
         </columns>
       </TableView>
       <Button fx:id="Add_button" layoutX="36.0" layoutY="75.0" mnemonicParsing="false" text="Добавить" />
