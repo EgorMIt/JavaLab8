@@ -6,10 +6,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
    <children>
-      <ComboBox fx:id="Languages" layoutX="14.0" layoutY="14.0" prefWidth="150.0" />
-      <TableView fx:id="objectTable" layoutX="16.0" layoutY="126.0" prefHeight="464.0" prefWidth="1063.0">
+      <ComboBox fx:id="Languages" layoutX="35.0" layoutY="28.0" prefWidth="150.0" promptText="Язык" />
+      <TableView fx:id="objectTable" layoutX="16.0" layoutY="126.0" prefHeight="411.0" prefWidth="1063.0">
         <columns>
           <TableColumn fx:id="ID" prefWidth="37.0" text="ID" />
           <TableColumn fx:id="Owner" prefWidth="59.0" text="Владелец" />
@@ -28,13 +28,13 @@
             <TableColumn fx:id="Birthday" prefWidth="110.0" text="День Рождения" />
         </columns>
       </TableView>
-      <Button fx:id="Add_button" layoutX="95.0" layoutY="66.0" mnemonicParsing="false" text="Добавить" />
-      <Button fx:id="Clear_button" layoutX="204.0" layoutY="66.0" mnemonicParsing="false" text="Отчистить" />
-      <Button fx:id="Remove" layoutX="355.0" layoutY="66.0" mnemonicParsing="false" text="Удалить" />
-      <Button fx:id="Remove_if_greater" layoutX="457.0" layoutY="44.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="135.0" text="Удалить если больше" />
-      <Button fx:id="Remove_if_lower" layoutX="457.0" layoutY="88.0" mnemonicParsing="false" text="Удалить если меньше" />
-      <Button fx:id="Update_id" layoutX="622.0" layoutY="66.0" mnemonicParsing="false" text="Обновить ID" />
-      <Button fx:id="Avarage_meters" layoutX="728.0" layoutY="66.0" mnemonicParsing="false" text="Средний уровнь над морем" />
-      <Button fx:id="Replace" layoutX="930.0" layoutY="66.0" mnemonicParsing="false" text="Заменить если больше" />
+      <Button fx:id="Add_button" layoutX="36.0" layoutY="75.0" mnemonicParsing="false" text="Добавить" />
+      <Button fx:id="Clear_button" layoutX="325.0" layoutY="75.0" mnemonicParsing="false" text="Удалить свои города" />
+      <Button fx:id="Remove" layoutX="179.0" layoutY="75.0" mnemonicParsing="false" text="Удалить" />
+      <Button fx:id="Remove_if_greater" layoutX="212.0" layoutY="28.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="256.0" text="Удалить все, которые больше заданного" />
+      <Button fx:id="Remove_if_lower" layoutX="517.0" layoutY="28.0" mnemonicParsing="false" text="Удалить все, которые меньше заданного" />
+      <Button fx:id="Update_id" layoutX="557.0" layoutY="75.0" mnemonicParsing="false" text="Обновить по ID" />
+      <Button fx:id="Avarage_meters" layoutX="753.0" layoutY="75.0" mnemonicParsing="false" text="Среднее значение высоты над уровнем моря" />
+      <Button fx:id="Replace" layoutX="824.0" layoutY="28.0" mnemonicParsing="false" text="Заменить город, если он меньше" />
    </children>
 </AnchorPane>

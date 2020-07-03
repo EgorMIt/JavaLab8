@@ -8,14 +8,12 @@ public class Network {
     private String address;
     private int port;
     private Socket socket;
-//    private ObjectOutputStream oos;
-//    private ObjectInputStream ois;
+
     private static boolean connection;
 
 
     public Network(String address, int port) throws IOException {
-//      this.address = address;
-//        this.port = port;
+
         socket = new Socket(address,port);
         this.connection = true;
     }
@@ -30,10 +28,7 @@ public class Network {
         send.flush();
         baos.flush();
 
-//        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-//        oos.writeObject(obj);
-//        System.out.println("Otpr")
-//        oos.flush();
+
     }
     public Object read() throws IOException, ClassNotFoundException {
         ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
@@ -41,17 +36,11 @@ public class Network {
         return o;
     }
 
-//    public ObjectInputStream getOis() {
-//        return ois;
-//    }
 
     public Socket getSocket() {
         return socket;
     }
 
-//    public ObjectOutputStream getOos() {
-//        return oos;
-//    }
 
 
     public void closeStream() throws IOException {

@@ -5,18 +5,18 @@ import exceptions.InvalidInputException;
 import java.io.Serializable;
 
 public enum Government implements Comparable<Government> , Serializable {
-    KRITARCHY(      "Критархия",    1),
-    OLIGARCHY(      "Олигархия",    2),
-    TIMOCRACY(      "Тимократия",   3),
+    KRITARCHY("Критархия", 1),
+    OLIGARCHY("Олигархия", 2),
+    TIMOCRACY("Тимократия", 3),
     TOTALITARIANISM("Тоталитаризм", 4);
 
 
     private String russianName;
-    private int      number;
+    private int number;
 
     Government(String russianName, int number) {
-        this.russianName =  russianName;
-        this.number =       number;
+        this.russianName = russianName;
+        this.number = number;
     }
 
 

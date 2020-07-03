@@ -19,14 +19,6 @@ public enum StandardOfLiving implements Comparable<StandardOfLiving> , Serializa
         this.number =       number;
     }
 
-    public static StandardOfLiving printByOrdinal(int a) {
-        for (StandardOfLiving value : StandardOfLiving.values()) {
-            if (value.getNumber() == a) {
-                return value;
-            }
-        }
-        throw new InvalidInputException("Не найдена категория уровня жизни: " + a);
-    }
 
     public int getNumber() {
         return number;
