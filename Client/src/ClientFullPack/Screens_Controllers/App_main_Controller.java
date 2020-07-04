@@ -5,6 +5,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
 
 import ClientFullPack.RunClient;
 import ClientFullPack.connection.Network;
@@ -18,10 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -29,7 +27,9 @@ import static ClientFullPack.RunClient.login;
 
 public class App_main_Controller {
 
-    public ObservableList<City> cities = FXCollections.observableArrayList();
+    public ObservableList<CityTable> cities = FXCollections.observableArrayList();
+
+    private static int collectionSize;
 
     @FXML
     private ResourceBundle resources;
@@ -41,49 +41,49 @@ public class App_main_Controller {
     private ComboBox<String> Languages;
 
     @FXML
-    private TableView<City> objectTable;
+    private TableView<CityTable> objectTable;
 
     @FXML
-    private TableColumn<City, Long> ID;
+    private TableColumn<CityTable, Long> ID;
 
     @FXML
-    private TableColumn<City, String> Owner;
+    private TableColumn<CityTable, String> Owner;
 
     @FXML
-    private TableColumn<City, String> Name;
+    private TableColumn<CityTable, String> Name;
 
     @FXML
-    private TableColumn<City, Integer> X;
+    private TableColumn<CityTable, Integer> X;
 
     @FXML
-    private TableColumn<City, Double> Y;
+    private TableColumn<CityTable, Double> Y;
 
     @FXML
-    private TableColumn<City, LocalDateTime> CreationDate;
+    private TableColumn<CityTable, LocalDateTime> CreationDate;
 
     @FXML
-    private TableColumn<City, Integer> Area;
+    private TableColumn<CityTable, Integer> Area;
 
     @FXML
-    private TableColumn<City, Integer> Population;
+    private TableColumn<CityTable, Integer> Population;
 
     @FXML
-    private TableColumn<City, Integer> MetersAboveSeaLevel;
+    private TableColumn<CityTable, Integer> MetersAboveSeaLevel;
 
     @FXML
-    private TableColumn<City, String> Climate;
+    private TableColumn<CityTable, String> Climate;
 
     @FXML
-    private TableColumn<City, String> Government;
+    private TableColumn<CityTable, String> Government;
 
     @FXML
-    private TableColumn<City, String> StandartOfLiving;
+    private TableColumn<CityTable, String> StandartOfLiving;
 
     @FXML
-    private TableColumn<City, Integer> Age;
+    private TableColumn<CityTable, Integer> Age;
 
     @FXML
-    private TableColumn<City, LocalDateTime> Birthday;
+    private TableColumn<CityTable, LocalDateTime> Birthday;
 
     @FXML
     private Button Add_button;
@@ -109,11 +109,30 @@ public class App_main_Controller {
     @FXML
     private Button Replace;
 
+    void update_table(){
+
+    }
+
     @FXML
     void initialize() {
-        ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
+
+        TimerTask task = new TimerTask() {
+            public void run() {
+                if(cities.size() > collectionSize) {
+                    collectionSize = cities.size();
+                    getClientObjects();
+                }
+            }
+        };
+
+        RunClient.timer.schedule(task, 0L, 1000L);
+
+
+    ObservableList<String> languages= FXCollections.observableArrayList("Русский", "Беларускі", "Magyar", "Español");
 
         Languages.setItems(languages);
+
+        getClientObjects();
 
         Add_button.setOnAction(event->{
             FXMLLoader loader = new FXMLLoader();
@@ -129,8 +148,6 @@ public class App_main_Controller {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
-        });
-        Clear_button.setOnAction(e->{
             getClientObjects();
         });
     }
@@ -148,22 +165,30 @@ public class App_main_Controller {
 
             ArrayList<City> arrayList  = (ArrayList) network.read();
 
-            cities.addAll(arrayList);
+            cities.clear();
 
-            ID.setCellValueFactory(new PropertyValueFactory<City, Long>("Id"));
-            Owner.setCellValueFactory(new PropertyValueFactory<City, String>("Owner"));
-            Name.setCellValueFactory(new PropertyValueFactory<City, String>("Name"));
-            X.setCellValueFactory(new PropertyValueFactory<City, Integer>("X"));
-            Y.setCellValueFactory(new PropertyValueFactory<City, Double>("Y"));
-            CreationDate.setCellValueFactory(new PropertyValueFactory<City, LocalDateTime>("CreationDate"));
-            Area.setCellValueFactory(new PropertyValueFactory<City, Integer>("Area"));
-            Population.setCellValueFactory(new PropertyValueFactory<City, Integer>("Population"));
-            MetersAboveSeaLevel.setCellValueFactory(new PropertyValueFactory<City, Integer>("MetersAboveSeaLevel"));
-            Climate.setCellValueFactory(new PropertyValueFactory<City, String>("Climate"));
-            Government.setCellValueFactory(new PropertyValueFactory<City, String>("Government"));
-            StandartOfLiving.setCellValueFactory(new PropertyValueFactory<City, String>("StandartOfLiving"));
-            Age.setCellValueFactory(new PropertyValueFactory<City, Integer>("Age"));
-            Birthday.setCellValueFactory(new PropertyValueFactory<City, LocalDateTime>("Birthday"));
+            for(City el: arrayList){
+                cities.add(new CityTable(el.getId(),el.getOwner(),el.getName(),el.getCoordinates().getX(),
+                        el.getCoordinates().getY(),el.getCreationDate(),el.getArea(),el.getPopulation(),
+                        el.getMetersAboveSeaLevel(),el.getClimate(),el.getGovernment(),el.getStandardOfLiving(),
+                        el.getGovernor().getAge(),el.getGovernor().getDateOfBirthday()));
+            }
+
+
+            ID.setCellValueFactory(new PropertyValueFactory<CityTable, Long>("Id"));
+            Owner.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Owner"));
+            Name.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Name"));
+            X.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("X"));
+            Y.setCellValueFactory(new PropertyValueFactory<CityTable, Double>("Y"));
+            CreationDate.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("creationDate"));
+            Area.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Area"));
+            Population.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Population"));
+            MetersAboveSeaLevel.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("MetersAboveSeaLevel"));
+            Climate.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Climate"));
+            Government.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Government"));
+            StandartOfLiving.setCellValueFactory(new PropertyValueFactory<CityTable, String>("standardOfLiving"));
+            Age.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Age"));
+            Birthday.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("dateOfBirthday"));
 
             objectTable.setItems(cities);
 
