@@ -134,6 +134,17 @@ public class App_main_Controller {
 
         getClientObjects();
 
+        objectTable.setOnMouseClicked(event -> { //Двойной клик по объекту в таблице
+            if (event.getClickCount() == 2) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Auth error");
+                    alert.setHeaderText("Auth error");
+                    alert.setContentText("Access error");
+                    alert.showAndWait().ifPresent(rs -> {});
+            }
+        });
+
+
         Add_button.setOnAction(event->{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("addScene.fxml"));
