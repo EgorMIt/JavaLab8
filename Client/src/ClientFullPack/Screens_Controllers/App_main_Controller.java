@@ -118,9 +118,18 @@ public class App_main_Controller {
 
         TimerTask task = new TimerTask() {
             public void run() {
-                if(cities.size() > collectionSize) {
-                    collectionSize = cities.size();
-                    getClientObjects();
+                try {
+                    Network network =  network = new Network(RunClient.ip_adress, RunClient.port);
+                    User user = new User(login,RunClient.pass);
+                    Message message = new Message(Commands.SHOW.getCommandName(),user);
+                    network.write(message);
+                    ArrayList<City> arrayList  = (ArrayList) network.read();
+                    if(arrayList.size() > collectionSize) {
+                        collectionSize = arrayList.size();
+                        getClientObjects(arrayList);
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         };
@@ -132,7 +141,6 @@ public class App_main_Controller {
 
         Languages.setItems(languages);
 
-        getClientObjects();
 
         objectTable.setOnMouseClicked(event -> { //Двойной клик по объекту в таблице
             if (event.getClickCount() == 2) {
@@ -159,53 +167,36 @@ public class App_main_Controller {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.showAndWait();
-            getClientObjects();
         });
     }
 
-    private void getClientObjects(){
-        try {
-            Network network = new Network(RunClient.ip_adress, RunClient.port);
+    private void getClientObjects(ArrayList<City> arrayList){
+        cities.clear();
 
-            User user = new User(login,RunClient.pass);
-
-            Message message = new Message(Commands.SHOW.getCommandName(),user);
-
-
-            network.write(message);
-
-            ArrayList<City> arrayList  = (ArrayList) network.read();
-
-            cities.clear();
-
-            for(City el: arrayList){
-                cities.add(new CityTable(el.getId(),el.getOwner(),el.getName(),el.getCoordinates().getX(),
-                        el.getCoordinates().getY(),el.getCreationDate(),el.getArea(),el.getPopulation(),
-                        el.getMetersAboveSeaLevel(),el.getClimate(),el.getGovernment(),el.getStandardOfLiving(),
-                        el.getGovernor().getAge(),el.getGovernor().getDateOfBirthday()));
-            }
-
-
-            ID.setCellValueFactory(new PropertyValueFactory<CityTable, Long>("Id"));
-            Owner.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Owner"));
-            Name.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Name"));
-            X.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("X"));
-            Y.setCellValueFactory(new PropertyValueFactory<CityTable, Double>("Y"));
-            CreationDate.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("creationDate"));
-            Area.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Area"));
-            Population.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Population"));
-            MetersAboveSeaLevel.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("MetersAboveSeaLevel"));
-            Climate.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Climate"));
-            Government.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Government"));
-            StandartOfLiving.setCellValueFactory(new PropertyValueFactory<CityTable, String>("standardOfLiving"));
-            Age.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Age"));
-            Birthday.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("dateOfBirthday"));
-
-            objectTable.setItems(cities);
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+        for(City el: arrayList){
+            cities.add(new CityTable(el.getId(),el.getOwner(),el.getName(),el.getCoordinates().getX(),
+                    el.getCoordinates().getY(),el.getCreationDate(),el.getArea(),el.getPopulation(),
+                    el.getMetersAboveSeaLevel(),el.getClimate(),el.getGovernment(),el.getStandardOfLiving(),
+                    el.getGovernor().getAge(),el.getGovernor().getDateOfBirthday()));
         }
+
+
+        ID.setCellValueFactory(new PropertyValueFactory<CityTable, Long>("Id"));
+        Owner.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Owner"));
+        Name.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Name"));
+        X.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("X"));
+        Y.setCellValueFactory(new PropertyValueFactory<CityTable, Double>("Y"));
+        CreationDate.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("creationDate"));
+        Area.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Area"));
+        Population.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Population"));
+        MetersAboveSeaLevel.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("MetersAboveSeaLevel"));
+        Climate.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Climate"));
+        Government.setCellValueFactory(new PropertyValueFactory<CityTable, String>("Government"));
+        StandartOfLiving.setCellValueFactory(new PropertyValueFactory<CityTable, String>("standardOfLiving"));
+        Age.setCellValueFactory(new PropertyValueFactory<CityTable, Integer>("Age"));
+        Birthday.setCellValueFactory(new PropertyValueFactory<CityTable, LocalDateTime>("dateOfBirthday"));
+
+        objectTable.setItems(cities);
     }
 
 }
