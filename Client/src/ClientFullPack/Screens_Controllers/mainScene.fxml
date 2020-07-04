@@ -6,10 +6,10 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="723.0" prefWidth="1330.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="1467.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientFullPack.Screens_Controllers.App_main_Controller">
    <children>
       <ComboBox fx:id="Languages" layoutX="35.0" layoutY="28.0" prefWidth="150.0" promptText="Язык" />
-      <TableView fx:id="objectTable" layoutX="36.0" layoutY="131.0" prefHeight="543.0" prefWidth="1288.0">
+      <TableView fx:id="objectTable" layoutX="17.0" layoutY="131.0" prefHeight="614.0" prefWidth="1438.0">
         <columns>
           <TableColumn fx:id="ID" prefWidth="37.0" text="ID" />
           <TableColumn fx:id="Owner" prefWidth="92.0" text="Владелец" />

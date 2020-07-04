@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Timer;
 
 
 public class RunClient extends Application {
@@ -18,6 +19,7 @@ public class RunClient extends Application {
     public static String owner;
     public static final String REGISTRATION_ISSUCESS = "[110100011000000011010000101101011101000010110011]";
     public static final String AUTHORIZATION_ISSUCCESS = "[110100001011000011010000101100101101000110000010]";
+    public static Timer timer  = new Timer();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
