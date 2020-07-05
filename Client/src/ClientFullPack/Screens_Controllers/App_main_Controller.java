@@ -29,7 +29,7 @@ public class App_main_Controller {
 
     public ObservableList<CityTable> cities = FXCollections.observableArrayList();
 
-    private static int collectionSize;
+    private static int collectionSize = 0;
 
     @FXML
     private ResourceBundle resources;
@@ -119,15 +119,15 @@ public class App_main_Controller {
         TimerTask task = new TimerTask() {
             public void run() {
                 try {
-                    Network network =  network = new Network(RunClient.ip_adress, RunClient.port);
+                    Network network = new Network(RunClient.ip_adress, RunClient.port);
                     User user = new User(login,RunClient.pass);
                     Message message = new Message(Commands.SHOW.getCommandName(),user);
                     network.write(message);
                     ArrayList<City> arrayList  = (ArrayList) network.read();
-                    if(arrayList.size() > collectionSize) {
+                    //if(arrayList.size() > collectionSize) {
                         collectionSize = arrayList.size();
                         getClientObjects(arrayList);
-                    }
+                    //}
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -144,11 +144,22 @@ public class App_main_Controller {
 
         objectTable.setOnMouseClicked(event -> { //Двойной клик по объекту в таблице
             if (event.getClickCount() == 2) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Auth error");
-                    alert.setHeaderText("Auth error");
-                    alert.setContentText("Access error");
-                    alert.showAndWait().ifPresent(rs -> {});
+                if (objectTable.getSelectionModel().getSelectedItem().getOwner().equals(login)) {
+                    RunClient.cityTable = objectTable.getSelectionModel().getSelectedItem();
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(getClass().getResource("updateScene.fxml"));
+
+                    try {
+                        loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Parent root = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.showAndWait();
+                }
             }
         });
 
